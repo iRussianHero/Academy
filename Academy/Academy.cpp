@@ -23,7 +23,7 @@ system("chcp 65001");
     bool exit = false;
     char select;
 
-    string path;
+    string path, message;
 
     do {
         ShowMenu();
@@ -34,6 +34,7 @@ system("chcp 65001");
         switch (select) {
             case '1': // 1. Добавить студента
                 InputStudent(students);
+                WriteToFile(path, message);
                 break;
             case '2': // 2. Добавить преподавателя
                 InputTeacher(teachers);

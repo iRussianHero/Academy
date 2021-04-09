@@ -10,6 +10,8 @@
 
 #include "cli.h"
 
+using namespace std;
+
 string choosePath(char select, string path) {
     if (select == 1 || select == 4) {
         path = "01_Students.csv";
@@ -41,4 +43,20 @@ bool WriteToFile(string path, string message)
         file.close();
         return false;
     }
+}
+
+bool WriteToFile(string path, string message)
+{
+    ofstream file;
+    file.open(path, ios_base::trunc);
+
+    if (file.is_open()) {
+        file << message << endl;
+        file.close();
+        return true;
+     }
+    else {
+        file.close();
+        return false;
+     }
 }
