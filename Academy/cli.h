@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <fstream>
 
 #include "show.h"
 
@@ -28,7 +29,7 @@ void ShowManagers(vector<Manager> managers)
 }
 
 
-void InputStudent(vector<Student>& students)
+void InputStudent(vector<Student>& students, string& message)
 { //TODO Упростить функцию
     Student temp;
     char temp_sex, temp_faculty;
@@ -54,9 +55,10 @@ void InputStudent(vector<Student>& students)
         temp.faculty = Faculty::NoFaculty;
     }
     students.push_back(temp);
+    message = temp.personal_info.name + ";" + to_string(temp.personal_info.age) + ";" +  to_string(temp.rating) + ";" + FacultyToString(temp.faculty);
 }
 
-void InputTeacher(vector<Teacher>& teachers)
+void InputTeacher(vector<Teacher>& teachers, string& message)
 {   //TODO Упростить функцию
     Teacher temp;
     char temp_sex, temp_subject;
@@ -85,9 +87,10 @@ void InputTeacher(vector<Teacher>& teachers)
         temp.subject = Subject::NoSubject;
     }
     teachers.push_back(temp);
+    message = temp.personal_info.name + ";" + to_string(temp.personal_info.age) + ";" + SubjectToString(temp.subject);
 }
 
-void InputManager(vector<Manager>& managers)
+void InputManager(vector<Manager>& managers, string& message)
 {   //TODO Упростить функцию
     Manager temp;
     char temp_sex, temp_position;
@@ -116,4 +119,21 @@ void InputManager(vector<Manager>& managers)
         temp.position = Position::NoPosition;
     }
     managers.push_back(temp);
+    message = temp.personal_info.name + ";" + to_string(temp.personal_info.age) + ";" + PositionToString(temp.position);
+}
+
+bool WriteToFile(string path, string message)
+{
+    ofstream file;
+    file.open(path, ios_base::app);
+
+    if (file.is_open()) {
+        file << message << endl;
+        file.close();
+        return true;
+    }
+    else {
+        file.close();
+        return false;
+    }
 }

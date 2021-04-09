@@ -5,7 +5,6 @@
 #include "Student.h"
 #include "Teacher.h"
 #include "Manager.h"
-#include "Utilites.h"
 
 #include "menu.h"
 #include "cli.h"
@@ -29,18 +28,22 @@ system("chcp 65001");
         ShowMenu();
         cout << "Введите номер: ";
         cin >> select;
-        choosePath(select, path);
 
         switch (select) {
             case '1': // 1. Добавить студента
-                InputStudent(students);
+                path = "01_Students.csv";
+                InputStudent(students, message);
                 WriteToFile(path, message);
                 break;
             case '2': // 2. Добавить преподавателя
+                path = "02_Teachers.csv";
                 InputTeacher(teachers);
+                WriteToFile(path, message);
                 break;
             case '3': // 3. Добавить менеджера
+                path = "03_Managers.csv";
                 InputManager(managers);
+                WriteToFile(path, message);
                 break;
             case '4': // 4. Показать всех студентов
                 ShowStudents(students);
