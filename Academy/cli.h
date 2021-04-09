@@ -22,11 +22,11 @@ void ShowTeachers(vector<Teacher> teachers)
 
 void ShowManagers(vector<Manager> managers)
 {
-    //TODO Написать реализацию по выводу информации о преподавателях
+    for (auto manager : managers) {
+        ShowManager(manager);
+    }
 }
 
-
-//TODO Написать реализацию по выводу информации о менеджерах
 
 void InputStudent(vector<Student>& students)
 { //TODO Упростить функцию
@@ -87,4 +87,33 @@ void InputTeacher(vector<Teacher>& teachers)
     teachers.push_back(temp);
 }
 
-//TODO Написать реализацию по вводу информации о менеджерах
+void InputManager(vector<Manager>& managers)
+{   //TODO Упростить функцию
+    Manager temp;
+    char temp_sex, temp_position;
+    cout << "Ввод данных о менеджере" << endl;
+    cout << "Введите имя - "; cin >> temp.personal_info.name;
+    cout << "Введите возраст - "; cin >> temp.personal_info.age;
+    cout << "Введите пол: M - мужской, F - женский "; cin >> temp_sex;
+    if (temp_sex == 'M') {
+        temp.personal_info.sex = Sex::Male;
+    }
+    else if (temp_sex == 'F') {
+        temp.personal_info.sex = Sex::Female;
+    }
+    else {
+        temp.personal_info.sex = Sex::Unknown;
+    }
+    cout << "Введите должность: D - Директор, S - Менеджер по продажам ";
+    cin >> temp_position;
+    if (temp_position == 'S' || temp_position == 's') {
+        temp.position = Position::Sales;
+    }
+    else if (temp_position == 'D' || temp_position == 'd') {
+        temp.position = Position::Director;
+    }
+    else {
+        temp.position = Position::NoPosition;
+    }
+    managers.push_back(temp);
+}

@@ -10,7 +10,7 @@ string SubjectToString(Subject subject)
 		case Graphics:
 			return "ÊÃèÄ";
 		case Development:
-			return"ĞÏÎ";
+			return "ĞÏÎ";
 		case NoSubject:
 			return "íå âûáğàíî";
 	}
